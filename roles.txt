@@ -9,5 +9,5 @@ merlin, percival, guinevere, good lancelot | morgana, bad lancelot, mordred
 merlin, percival, guinevere, good lancelot, townie | morgana, bad lancelot, mordred
 merlin, percival, guinevere, good lancelot, townie | morgana, bad lancelot, mordred, oberon
 merlin, percival, guinevere, good lancelot, townie, townie | morgana, bad lancelot, mordred, oberon
-merlin, percival, guinevere, good lancelot, townie, townie | morgana, bad lancelot, mordred, oberon, bad lancelot
-merlin, percival, guinevere, good lancelot, townie, townie, townie | morgana, bad lancelot, mordred, oberon, bad lancelot
+merlin, percival, guinevere, good lancelot, townie, townie | morgana, bad lancelot, mordred, oberon, bad townie
+merlin, percival, guinevere, good lancelot, townie, townie, townie | morgana, bad lancelot, mordred, oberon, bad townie

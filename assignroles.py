@@ -4,6 +4,7 @@ import random
 from collections import defaultdict as ddict
 from libemail import Message, sendEmails
 from libavalon import getPlayers
+import copy
 
 
 class Roles:
@@ -37,19 +38,19 @@ class Roles:
 
     def visibleRoles(self, role):
         if role == "merlin":
-            return [x for x in self.bad if x != "mordred"]
+            return [x for x in self.bad if (x != "mordred")] + ["dean kamen"]
         if role == "morgana":
-            return [x for x in self.bad if x != "oberon"]
+            return [x for x in self.bad if (x != "oberon" and x != "broberon")]
         if role == "mordred":
-            return [x for x in self.bad if x != "oberon"]
+            return [x for x in self.bad if (x != "oberon" and x != "broberon")]
         if role == "guinevere":
             return ["good lancelot", "bad lancelot"]
         if role == "percival":
             return ["morgana", "merlin"]
         if role == "bad lancelot":
-            return [x for x in self.bad if x != "oberon"]
-        if role == "tad townie":
-            return [x for x in self.bad if x != "oberon"]
+            return [x for x in self.bad if (x != "oberon" and x != "broberon")]
+        if role == "bad townie":
+            return [x for x in self.bad if (x != "oberon" and x != "broberon")]
         return []
 
     def visibleHands(self, player):
@@ -69,13 +70,18 @@ class Roles:
 def sendRoles(players, emails):
     roles = Roles(players)
 
+    _players = copy.copy(players)
+    random.shuffle(_players)
+    order = "lady: %s\n" % _players[0]
+    order += ", ".join(_players)
+
     msgs = []
     for email, player in zip(emails, players):
         role = roles.getRole(player)
         visibleHands = roles.visibleHands(player)
         msgs.append(
                 Message("Role Assignment", email, 
-                    "your role is %s\nyou see %s" % (role, visibleHands))
+                    "your role is %s\nyou see %s\n\n%s" % (role, visibleHands, order))
                 )
     sendEmails(msgs)
 
